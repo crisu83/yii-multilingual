@@ -16,9 +16,9 @@ class MlApplicationBehavior extends CBehavior
 	 */
 	public function events()
 	{
-		return array(
-			'onBeginRequest'=>'setLanguage',
-		);
+        return array_merge(parent::events(), array(
+            'onBeginRequest'=>'setLanguage',
+        ));
 	}
 
 	/**
@@ -33,7 +33,7 @@ class MlApplicationBehavior extends CBehavior
 	/**
 	 * Sets the application language from a user state if applicable.
 	 */
-	protected function setLanguage()
+	public function setLanguage()
 	{
 		$matches = array();
 		if ($this->owner->user->hasState('__locale'))
